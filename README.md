@@ -1,3 +1,19 @@
+  ██╗  ██╗███████╗██╗   ██╗██╗      ██████╗  ██████╗  ██████╗ ███████╗██████╗ 
+  ██║ ██╔╝██╔════╝╚██╗ ██╔╝██║     ██╔════╝ ██╔═══██╗██╔════╝ ██╔════╝██╔══██╗
+  █████╔╝ █████╗   ╚████╔╝ ██║     ██║  ███╗██║   ██║██║  ███╗█████╗  ██████╔╝
+  ██╔═██╗ ██╔══╝    ╚██╔╝  ██║     ██║   ██║██║   ██║██║   ██║██╔══╝  ██╔══██╗
+  ██║  ██╗███████╗   ██║   ███████╗╚██████╔╝╚██████╔╝╚██████╔╝███████╗██║  ██║
+  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝
+
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+  ![pynput](https://img.shields.io/badge/pynput-14354C?style=flat&logo=python&logoColor=white)
+  ![SMTP](https://img.shields.io/badge/SMTP-D14836?style=flat&logo=gmail&logoColor=white)
+  ![email-library](https://img.shields.io/badge/email_library-505050?style=flat&logo=mail.ru&logoColor=white)
+  ![base64](https://img.shields.io/badge/base64-000000?style=flat&logo=base64&logoColor=white)
+  ![logging](https://img.shields.io/badge/logging-FFA500?style=flat&logo=windows-terminal&logoColor=black)
+  ![os](https://img.shields.io/badge/os_system-4B0082?style=flat&logo=windows&logoColor=white)
+  ![datetime](https://img.shields.io/badge/datetime-2CA5E0?style=flat&logo=clockify&logoColor=white)
+
 # **🛠️ Advanced Keylogger Tool - Comprehensive Project Overview**  
 *(Strictly for Educational and Research Purposes)*  
 
