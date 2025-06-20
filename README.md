@@ -94,9 +94,12 @@ python
 ⚠️ Legal & Ethical Warning
 
 ❗ This tool is for EDUCATIONAL USE ONLY!
+
 ❗ Unauthorized monitoring is ILLEGAL.
+
 ❗ Only use on systems you OWN or have EXPLICIT PERMISSION to test.
-🔧 How to Run
+
+**🔧 How to Run**
 
 1️⃣ Install dependencies:
 bash
@@ -109,7 +112,8 @@ bash
 python keylogger.py
 
 3️⃣ Press ESC to stop.
-🎯 Conclusion
+
+**🎯 Conclusion**
 
 This tool demonstrates keylogging, file management, and email automation in Python. Use responsibly!
 
