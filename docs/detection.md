@@ -24,3 +24,15 @@ rule Python_Keylogger {
     condition:
         any of them
 }
+```
+3. **Wire Shark**
+```
+# SMTP Exfiltration
+smtp && frame contains "MAIL FROM" && (frame contains "keylog" || frame contains "keystroke")
+
+# HTTP Exfiltration
+http.request.method == "POST" && (http.file_data contains "key=" || http.file_data contains "log=")
+
+# DNS Exfiltration
+dns.qry.name matches /[a-z0-9]{16}\.exfil\.com/
+```
