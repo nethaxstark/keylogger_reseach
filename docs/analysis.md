@@ -1,13 +1,13 @@
 # Localhost Network Analysis with Wireshark & Npcap
 
 ## Table of Contents
-1. [Npcap Setup](#1-npcap-setup)
-2. [Capturing Localhost Traffic](#2-capturing-localhost-traffic)
-3. [Keylogger Traffic Patterns](#3-keylogger-traffic-patterns)
-4. [SMTP Analysis](#4-smtp-analysis)
-5. [HTTP Exfiltration](#5-http-exfiltration)
-6. [Advanced Filters](#6-advanced-filters)
-7. [Forensic Artifacts](#7-forensic-artifacts)
+1. [Npcap Setup]()
+2. [Capturing Localhost Traffic]()
+3. [Keylogger Traffic Patterns]()
+4. [SMTP Analysis]()
+5. [HTTP Exfiltration]()
+6. [Advanced Filters]()
+7. [Forensic Artifacts]()
 
 ---
 
