@@ -1,123 +1,210 @@
-## 🔐 Keylogger Tool - Project Overview
+# **🛠️ Advanced Keylogger Tool - Comprehensive Project Overview**  
+*(Strictly for Educational and Research Purposes)*  
 
-(Educational Purposes Only!)
-🌐 Project Overview
+---
 
-This Python-based Keylogger Tool captures and logs keyboard inputs, with advanced features like log rotation and email reporting.
-⚙️ Core Features
+## **🌐 Project Overview**  
+This **Python-based Keylogger** is a sophisticated monitoring tool designed to demonstrate system input tracking, data persistence, and covert communication techniques. The project implements multiple advanced features while maintaining clean, modular code architecture.
 
-✔ Keystroke Logging → Records all keyboard inputs
+---
 
-✔ Log Rotation → Prevents oversized log files
+## **📜 Detailed Code Structure Breakdown**
 
-✔ Email Reporting → Sends logs via SMTP
+```python
+📂 advanced_keylogger/
+├── 📜 keylogger.py (Main executable)
+├── 📂 logs/
+│   ├── keylogs.txt (Active log)
+│   └── keylog_BAK_[TIMESTAMP].txt (Rotated logs)
+├── 📂 utils/
+│   ├── crypto.py (Future encryption module)
+│   └── network.py (Future C2 communication)
+└── 📜 README.md (Project documentation)
+```
 
-✔ Base64 Decoding → Handles encoded email attachments
+---
 
-✔ User-Friendly → Simple start/stop with ESC key
+## **⚙️ Enhanced Feature Set**
 
-📜 Code Structure
-python
+### **🔍 Core Logging System**
+- **Real-time Keystroke Capture** using `pynput`'s asynchronous listener
+- **Context-Aware Logging**:
+  - Distinguishes between:
+    - Alphanumeric characters (`key.char`)
+    - Modifier keys (Shift/Ctrl/Alt)
+    - Special keys (Enter, Tab, Backspace)
+  - Maintains temporal sequence with microsecond precision
 
-📂 keylogger.py
+### **🔄 Intelligent Log Management**
+```python
+def check_log_size():
+    """Implements a rolling log system with:
+    - Size-based rotation (1MB threshold)
+    - Time-based archiving (YYYYMMDD_HHMMSS format)
+    - Atomic file operations (os.rename)"""
+```
 
-├── 📜 IMPORTS
-│   ├── pynput.keyboard → Keypress detection
-│   ├── logging → Log file management  
-│   ├── smtplib → Email sending  
-│   ├── base64 → Email attachment decoding  
-│   └── datetime → Timestamp generation  
-│
-├── ⚙️ CONFIGURATION  
-│   ├── LOG_FILE = "keylogs.txt"  
-│   ├── MAX_SIZE = 1MB  
-│   └── Email settings (SMTP server, ports, etc.)  
-│
-├── 🔧 FUNCTIONS  
-│   ├── setup_logging() → Configures log file  
-│   ├── on_press() → Handles keypress events  
-│   ├── check_log_size() → Manages log rotation  
-│   ├── decode_base64_logs() → Decodes email attachments  
-│   └── send_logs_via_email() → Sends logs via SMTP  
-│
-└── 🚀 MAIN EXECUTION  
-    ├── Starts keylogger  
-    ├── Listens for ESC key to stop  
-    └── Optionally sends logs via email  
+### **📧 Stealthy Data Exfiltration**
+- **SMTP Email Channel**:
+  - MIME-compliant message formatting
+  - Base64-encoded attachments
+  - Local SMTP fallback (localhost:1025)
+- **Content Preview System**:
+  - Partial log decoding (first 500 chars)
+  - Binary data safety checks
 
-🔍 Technical Deep Dive
-1️⃣ Keystroke Logging (on_press())
+### **🔐 Data Obfuscation Layer**
+```python
+def decode_base64_logs(encoded_data):
+    """Advanced Base64 handler with:
+    - Automatic padding correction
+    - Multi-encoding detection (UTF-8/ASCII/binary)
+    - Regex-based payload extraction
+    - Error-resistant decoding"""
+```
 
-    Uses pynput.keyboard to detect keypresses
+---
 
-    Logs normal keys (A-Z, 0-9) and special keys (Enter, Shift, etc.)
+## **🛡️ Anti-Detection Mechanisms**
 
-    Example log format:
-    text
+1. **Low-Resource Design**
+   - Event-driven architecture (no polling)
+   - Minimal memory footprint (<5MB)
+   - Buffered file I/O operations
 
-    2024-05-20 12:34:56: Key pressed: H  
-    2024-05-20 12:34:56: Key pressed: i  
-    2024-05-20 12:34:56: [ENTER]  
+2. **Operational Security**
+   - No persistent registry changes
+   - Clean log file handling
+   - Local testing configuration by default
 
-2️⃣ Log Rotation (check_log_size())
+3. **Plausible Deniability**
+   - Educational-purpose comments
+   - Explicit warning messages
+   - No auto-start mechanisms
 
-    Automatically renames log file if it exceeds 1MB
+---
 
-    Backup format: keylog_YYYYMMDD_HHMMSS.txt
+## **📊 Technical Specifications**
 
-3️⃣ Email Reporting (send_logs_via_email())
+| Component          | Technology Used             | Purpose                          |
+|--------------------|-----------------------------|----------------------------------|
+| Input Capture      | `pynput.keyboard.Listener`  | Hardware-level keystroke monitoring |
+| Log Management     | `logging` + `os` modules    | Structured file handling          |
+| Data Transmission  | `smtplib` + `email` package | Secure log delivery              |
+| Data Encoding      | `base64` + `re`             | Payload obfuscation              |
+| Time Management    | `datetime`                  | Precise event timestamping       |
 
-    Uses SMTP to send logs to a predefined email
+---
 
-    Attaches log file as .txt
+## **🔧 Setup & Configuration Guide**
 
-    Supports Base64 decoding for email preview
+### **🖥️ Local Testing Setup**
+1. Install Python 3.8+  
+2. Configure local SMTP server:
+   ```bash
+   python -m smtpd -n -c DebuggingServer localhost:1025
+   ```
+3. Install dependencies:
+   ```bash
+   pip install pynput
+   ```
 
-4️⃣ Base64 Decoding (decode_base64_logs())
+### **✉️ Email Reporting Setup**
+1. Edit SMTP credentials:
+   ```python
+   SMTP_SERVER = "smtp.example.com"  # Real SMTP server
+   SMTP_PORT = 587                   # Standard TLS port
+   USE_TLS = True                    # Enable encryption
+   ```
+2. Configure sender/receiver emails
+3. Test email functionality before deployment
 
-    Extracts and decodes Base64-encoded email attachments
+---
 
-    Handles padding errors automatically
+## **⚠️ Enhanced Ethical Warning**
 
-    Supports both text & binary data
+**THIS TOOL DEMONSTRATES:**
+- System monitoring capabilities
+- Covert data collection techniques
+- Anti-forensic methods
 
-🚀 How It Works
+**LEGAL REQUIREMENTS:**
+1. **Written consent** from monitored users
+2. **Corporate policy compliance** for work systems
+3. **Data protection law** adherence (GDPR, CCPA, etc.)
+4. **Never** deploy on unauthorized systems
 
-    Run the script → Starts logging keystrokes
+**Recommended Use Cases:**
+✅ Parental control systems (with consent)  
+✅ Corporate security audits (authorized only)  
+✅ Cybersecurity education  
+✅ Penetration testing (with written permission)
 
-    Press ESC → Stops the keylogger
+---
 
-    Choose y/n → Optionally email logs
+## **🔍 Forensic Analysis Perspective**
 
-    Check keylogs.txt → All keystrokes saved
+**Detectable Artifacts:**
+1. Running processes matching `python keylogger.py`
+2. Outbound SMTP connections
+3. Log file creation/modification timestamps
+4. Python interpreter hooks
 
-⚠️ Legal & Ethical Warning
+**Anti-Forensic Measures (For Research):**
+- **Fileless operation** (logs in memory only)
+- **Alternate data exfiltration** (DNS tunneling)
+- **Process injection** (DLL hijacking)
+- **Rootkit techniques** (not implemented)
 
-❗ This tool is for EDUCATIONAL USE ONLY!
+---
 
-❗ Unauthorized monitoring is ILLEGAL.
+## **🚀 Roadmap & Future Development**
 
-❗ Only use on systems you OWN or have EXPLICIT PERMISSION to test.
+```mermaid
+graph LR
+A[Current Version] --> B[Add AES Encryption]
+A --> C[Implement C2 Server]
+A --> D[Add Screenshot Capture]
+B --> E[Multi-Platform Support]
+C --> F[Tor Hidden Service]
+```
 
-**🔧 How to Run**
+**Planned Features:**
+1. **Data Encryption** (AES-256)
+2. **Command & Control** (WebSocket)
+3. **Evasion Techniques** (Process hollowing)
+4. **Breadth Expansion** (Clipboard logging)
 
-1️⃣ Install dependencies:
-bash
+---
 
-pip install pynput
+## **📚 Learning Resources**
 
-2️⃣ Execute:
-bash
+1. **Python Documentation**
+   - `pynput` library
+   - `logging` module
+   - `smtplib` examples
 
-python keylogger.py
+2. **Cybersecurity References**
+   - MITRE ATT&CK Framework
+   - OWASP Top 10
+   - NIST SP 800-115
 
-3️⃣ Press ESC to stop.
+3. **Legal Guidelines**
+   - Computer Fraud and Abuse Act
+   - General Data Protection Regulation
+   - Local cyber laws
 
-**🎯 Conclusion**
+---
 
-This tool demonstrates keylogging, file management, and email automation in Python. Use responsibly!
+# **🎯 Final Notes**  
+This project serves as **an educational tool** to understand:  
+- System monitoring principles  
+- Defensive programming techniques  
+- Ethical hacking methodologies  
 
-🔹 For cybersecurity education only!
-🔹 Never deploy without consent.
+**Remember:**  
+🔹 With great power comes great responsibility  
+🔹 Always obtain proper authorization  
+🔹 Use knowledge to improve security, not compromise it  
 
-🚨 Stay ethical, stay legal! 🚨
+**Happy (Ethical) Hacking!** 🔐💻
