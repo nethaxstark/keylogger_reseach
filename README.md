@@ -100,7 +100,7 @@ def decode_base64_logs(encoded_data):
 
 ### **🖥️ Local Testing Setup**
 1. Install Python 3.8+  
-2. Configure local SMTP server:
+2. Configure local SMTP server: Run on Windows terminal, then run the main keylogger script.
    ```bash
    python -m aiosmtpd -n -l localhost:1025 --debug
    ```
@@ -111,7 +111,7 @@ def decode_base64_logs(encoded_data):
    ```
 
 ### **✉️ Email Reporting Setup**
-1. Edit SMTP credentials:
+1. Edit SMTP credentials in the detection/yara_keyloggerdetect.py:
    ```python
    SMTP_SERVER = "localhost"  
    SMTP_PORT = 1025                 
@@ -119,6 +119,7 @@ def decode_base64_logs(encoded_data):
    ```
 2. Configure sender/receiver emails
 3. Test email functionality before deployment
+4. Run the program in src/keylogger_mail.py
 
 ---
 
