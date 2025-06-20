@@ -53,16 +53,6 @@ graph TD
 
 ---
 
-## 🎥 Demo  
-### Python Execution  
-![Python Code Running](https://media.giphy.com/media/LMt9638dO8dftAjtco/giphy.gif)  
-
-### Email Reporting  
-![SMTP Working](https://media.giphy.com/media/5WJ6K7XnP2K2p3VWft/giphy.gif)  
-
-## ⚠️ Legal Notice  
-![Warning](https://media.giphy.com/media/3ohhwM5vJwkb2N13Fe/giphy.gif)  
-
 ## **⚙️ Enhanced Feature Set**
 
 ### **🔍 Core Logging System**
