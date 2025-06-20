@@ -11,14 +11,14 @@ This **Python-based Keylogger** is a sophisticated monitoring tool designed to d
 ## **📜 Detailed Code Structure Breakdown**
 
 ```python
-📂 advanced_keylogger/
-├── 📜 keylogger.py (Main executable)
-├── 📂 logs/
-│   ├── keylogs.txt (Active log)
-│   └── keylog_BAK_[TIMESTAMP].txt (Rotated logs)
-├── 📂 utils/
-│   ├── crypto.py (Future encryption module)
-│   └── network.py (Future C2 communication)
+📂 keylogger_research
+├── 📂 src/📜 keylogger_mail.py (Main executable)
+├── 📂 docs/
+│   ├── analysis.md (analysis.doc)
+│   └── detection.md (detection.doc)
+├── 📂 samples/
+│   ├── sample_keyloggermail.pcapng (pcapng Wireshark)
+│   └── sample_keylogs.txt (sample keylogs)
 └── 📜 README.md (Project documentation)
 ```
 
@@ -102,19 +102,20 @@ def decode_base64_logs(encoded_data):
 1. Install Python 3.8+  
 2. Configure local SMTP server:
    ```bash
-   python -m smtpd -n -c DebuggingServer localhost:1025
+   python -m aiosmtpd -n -l localhost:1025 --debug
    ```
 3. Install dependencies:
    ```bash
    pip install pynput
+   pip install aiosmtpd
    ```
 
 ### **✉️ Email Reporting Setup**
 1. Edit SMTP credentials:
    ```python
-   SMTP_SERVER = "smtp.example.com"  # Real SMTP server
-   SMTP_PORT = 587                   # Standard TLS port
-   USE_TLS = True                    # Enable encryption
+   SMTP_SERVER = "localhost"  
+   SMTP_PORT = 1025                 
+   USE_TLS = False                    
    ```
 2. Configure sender/receiver emails
 3. Test email functionality before deployment
@@ -145,7 +146,7 @@ def decode_base64_logs(encoded_data):
 ## **🔍 Forensic Analysis Perspective**
 
 **Detectable Artifacts:**
-1. Running processes matching `python keylogger.py`
+1. Running processes matching `python keylogger_mail.py`
 2. Outbound SMTP connections
 3. Log file creation/modification timestamps
 4. Python interpreter hooks
