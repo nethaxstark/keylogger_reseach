@@ -25,7 +25,7 @@ rule Python_Keylogger {
         any of them
 }
 ```
-##Network Detection##
+## Network Detection
 
 **Wire Shark**
 ```
@@ -38,7 +38,7 @@ http.request.method == "POST" && (http.file_data contains "key=" || http.file_da
 # DNS Exfiltration
 dns.qry.name matches /[a-z0-9]{16}\.exfil\.com/
 ```
-##Detection Tools##
+## Detection Tools
 
 **Endpoint**
 ```
