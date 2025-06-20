@@ -195,8 +195,28 @@ pip install yara-python psutil
 2. aiosmtpd debug server shows raw email content
 3. Wireshark captures the network packets:
 
-   ![Wireshark SMTP Capture](https://i.imgur.com/JQpW3r5.png)
+```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'nodeBorder': '#2d2d2d'}}}%%
+flowchart LR
+    A[("fa:fa-terminal Run Keylogger")] --> B[("fa:fa-keyboard Capture Keystrokes")]
+    B --> C{ESC Pressed?}
+    C -->|No| B
+    C -->|Yes| D[("fa:fa-paper-plane Send Logs via SMTP")]
+    D --> E[("fa:fa-server Local SMTP Server\n(port 1025)")]
+    E --> F[("fa:fa-shield-alt Detection Module\nYARA Scan")]
+    F --> G[("fa:fa-network-wired Wireshark\nLoopback Capture")]
+    G --> H[("fa:fa-filter Filter:\nipv6.dstport==1025\n&& ipv6.dst==::1")]
+    H --> I[("fa:fa-chart-bar Analyze SMTP Traffic")]
 
+    style A fill:#6a0dad,color:white
+    style D fill:#d35f8d,color:white
+    style E fill:#1b7ced,color:white
+    style G fill:#00aa00,color:white
+    style I fill:#ff8c00,color:white
+
+    classDef icon font-family:FontAwesome
+    class A,B,C,D,E,F,G,H,I icon
+```
 ---
 
 ### **Troubleshooting**
