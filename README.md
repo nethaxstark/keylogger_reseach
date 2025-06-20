@@ -52,6 +52,169 @@ graph TD
 ```
 
 ---
+Here's a **properly formatted "How to Run" section** for your `README.md` that includes all your requirements with correct syntax and alignment:
+
+---
+
+## 🚀 How to Run
+
+### **Running the Keylogger**
+```bash
+# Execute the keylogger (main file)
+python keylogger_mail.py
+
+# Press [ESC] to stop logging and exit
+```
+
+---
+
+### **Testing Email Functionality Locally**
+1. **First Terminal (SMTP Debug Server)**:
+   ```bash
+   python -m aiosmtpd -n -l localhost:1025 --debug
+   ```
+   *This will intercept all emails sent by the keylogger*
+
+2. **Second Terminal (Run Keylogger)**:
+   ```bash
+   python keylogger_mail.py
+   ```
+
+---
+
+### **Capturing Traffic in Wireshark**
+1. Open Wireshark and select the **Loopback Interface** (for localhost traffic)
+2. Apply this filter to monitor SMTP traffic:
+   ```text
+   tcp.port == 1025 || ipv6.dstport == 1025
+   ```
+   *(Captures both IPv4 and IPv6 traffic on port 1025)*
+
+3. For **IPv6-specific filtering** (when using ::1):
+   ```text
+   ipv6.dstport == 1025 && ipv6.dst == ::1
+   ```
+
+---
+Here's a properly formatted **Detection Section** for your `README.md` with correct syntax and alignment:
+
+---
+
+## 🔍 Detection Module
+
+### **YARA-Based Keylogger Detection**
+Located in `sec/detection/`, this module helps identify keylogger processes running on the system.
+
+```text
+sec/
+└── detection/
+    ├── yara_keyloggerdetect.py  # Detection script
+    └── yara_rules.yar           # Predefined detection rules
+```
+
+---
+
+### **How to Use**
+```bash
+python yara_keyloggerdetect.py <suspect_file> <yara_rules.yar>
+```
+
+#### **Arguments**
+| Argument | Description | Example |
+|----------|-------------|---------|
+| `suspect_file` | File/process to analyze | `keylogger_mail.py` |
+| `yara_rules.yar` | Rule file for detection | `sec/detection/yara_rules.yar` |
+
+---
+
+### **Example Usage**
+1. Scan a Python file:
+   ```bash
+   python sec/detection/yara_keyloggerdetect.py /usr/bin/keylogger_mail.py sec/detection/yara_rules.yar
+   ```
+
+2. Scan running process (Linux/Mac):
+   ```bash
+   python sec/detection/yara_keyloggerdetect.py /proc/$PID/exe sec/detection/yara_rules.yar
+   ```
+   *(Where `$PID` is the process ID)*
+
+---
+
+### **Sample YARA Rule (yara_rules.yar)**
+```yara
+rule keylogger_indicator {
+    meta:
+        description = "Detects common keylogger patterns"
+    
+    strings:
+        $pynput = "pynput" nocase
+        $keyboard = "keyboard.Listener" nocase
+        $logging = "logging.info" nocase
+    
+    condition:
+        any of them
+}
+```
+
+---
+
+### **Detection Logic**
+1. **Static Analysis**  
+   - Scans for known keylogger signatures:
+     ```python
+     import pynput.keyboard
+     logging.info(f"Key pressed: {key.char}")
+     ```
+
+2. **Behavioral Indicators**  
+   - Checks for:
+     - Keyboard hooking functions
+     - Log file creation
+     - SMTP communication patterns
+
+---
+
+### **Output Interpretation**
+| Result | Meaning |
+|--------|---------|
+| `MATCH` | Keylogger patterns detected |
+| `CLEAN` | No indicators found |
+| `ERROR` | Invalid file or rules |
+
+---
+
+### **Dependencies**
+```bash
+pip install yara-python psutil
+```
+---
+
+### **Expected Flow**
+1. Keylogger runs → Sends logs via SMTP when stopped
+2. aiosmtpd debug server shows raw email content
+3. Wireshark captures the network packets:
+
+   ![Wireshark SMTP Capture](https://i.imgur.com/JQpW3r5.png)
+
+---
+
+### **Troubleshooting**
+| Issue | Solution |
+|-------|----------|
+| `Address already in use` | Change port in both keylogger and aiosmtpd command |
+| No Wireshark data | Run as admin/root and verify interface selection |
+| IPv6 not showing | Use `::1` as target in keylogger's SMTP config |
+
+---
+
+### **Dependencies**
+Ensure these are installed first:
+```bash
+pip install pynput aiosmtpd
+```
+
+---
 
 ## **⚙️ Enhanced Feature Set**
 
