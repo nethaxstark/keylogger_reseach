@@ -6,6 +6,17 @@
 ## **🌐 Project Overview**  
 This **Python-based Keylogger** is a sophisticated monitoring tool designed to demonstrate system input tracking, data persistence, and covert communication techniques. The project implements multiple advanced features while maintaining clean, modular code architecture.
 
+```mermaid
+graph TD
+    A[Keylogger Project] --> B[Offensive Skills]
+    A --> C[Defensive Skills]
+    B --> B1(Memory/Process Manipulation)
+    B --> B2(Data Exfiltration)
+    C --> C1(Log Analysis)
+    C --> C2(Detection Rules)
+    C --> C3(Incident Response)
+```
+
 ---
 
 ## **📜 Detailed Code Structure Breakdown**
@@ -137,6 +148,7 @@ def decode_base64_logs(encoded_data):
 4. **Never** deploy on unauthorized systems
 
 **Recommended Use Cases:**
+
 ✅ Parental control systems (with consent)  
 ✅ Corporate security audits (authorized only)  
 ✅ Cybersecurity education  
@@ -188,10 +200,12 @@ C --> F[Tor Hidden Service]
 
 2. **Cybersecurity References**
    - MITRE ATT&CK Framework
+  ```mermaid
   graph LR
 A[Keylogger] --> B[T1056.001: Input Capture]
 A --> C[T1071: Application Layer Protocol]
 A --> D[T1041: Exfiltration Over C2 Channel]
+```
    - 
    - OWASP Top 10
    - NIST SP 800-115
