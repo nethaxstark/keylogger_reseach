@@ -188,6 +188,11 @@ C --> F[Tor Hidden Service]
 
 2. **Cybersecurity References**
    - MITRE ATT&CK Framework
+  graph LR
+A[Keylogger] --> B[T1056.001: Input Capture]
+A --> C[T1071: Application Layer Protocol]
+A --> D[T1041: Exfiltration Over C2 Channel]
+   - 
    - OWASP Top 10
    - NIST SP 800-115
 
