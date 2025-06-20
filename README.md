@@ -7,14 +7,20 @@ This Python-based Keylogger Tool captures and logs keyboard inputs, with advance
 ⚙️ Core Features
 
 ✔ Keystroke Logging → Records all keyboard inputs
+
 ✔ Log Rotation → Prevents oversized log files
+
 ✔ Email Reporting → Sends logs via SMTP
+
 ✔ Base64 Decoding → Handles encoded email attachments
+
 ✔ User-Friendly → Simple start/stop with ESC key
+
 📜 Code Structure
 python
 
 📂 keylogger.py
+
 ├── 📜 IMPORTS
 │   ├── pynput.keyboard → Keypress detection
 │   ├── logging → Log file management  
