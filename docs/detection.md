@@ -25,7 +25,9 @@ rule Python_Keylogger {
         any of them
 }
 ```
-3. **Wire Shark**
+##Network Detection##
+
+**Wire Shark**
 ```
 # SMTP Exfiltration
 smtp && frame contains "MAIL FROM" && (frame contains "keylog" || frame contains "keystroke")
@@ -35,4 +37,27 @@ http.request.method == "POST" && (http.file_data contains "key=" || http.file_da
 
 # DNS Exfiltration
 dns.qry.name matches /[a-z0-9]{16}\.exfil\.com/
+```
+##Detection Tools##
+
+**Endpoint**
+```
+Tool	Usage	Command Example
+YARA	File scanning	yara rules.yar suspicious.exe
+Sysmon	Process monitoring	Get-WinEvent -Path sysmon.evtx
+OSQuery	Live system queries	SELECT * FROM processes WHERE cmdline LIKE '%pynput%'
+```
+**Network**
+```
+Tool	Usage	Command Example
+Zeek	Protocol analysis	zeek -r traffic.pcap
+Suricata	IDS/IPS	suricata -c suricata.yaml -r traffic.pcap
+Wireshark	Manual inspection	tcp.port == 587 && smtp
+```
+**Memory**
+```
+Tool	Usage	Command Example
+Volatility	Memory forensics	vol.py -f memory.dump pslist
+Rekall	Memory analysis	rekall -f memory.img pslist
+Redline	IOC hunting	Manual analysis via GUI
 ```
